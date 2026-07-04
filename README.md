@@ -1,0 +1,1 @@
+An educational LLM inference engine built from scratch to explore transformer decoding, KV caching, continuous batching, scheduling, and modern inference optimizations inspired by production systems like vLLM.
