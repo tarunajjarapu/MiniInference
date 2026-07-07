@@ -9,5 +9,13 @@ model = AutoModelForCausalLM.from_pretrained(
 
 tokenizenizer = AutoTokenizer.from_pretrained(model_id)
 
-prompt = input("Enter prompt: ")
-print(prompt)
+text = input("Enter Prompt: ")
+print(text)
+
+inputs = tokenizenizer(
+    text,
+    return_tensor="pt",
+    padding=True
+    truncation=True
+)
+
