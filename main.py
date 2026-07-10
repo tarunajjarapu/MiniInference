@@ -1,5 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForCasualLM
-import torch
+from transformers import AutoTokenizer
 
 model_id = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 
@@ -12,10 +11,4 @@ tokenizenizer = AutoTokenizer.from_pretrained(model_id)
 text = input("Enter Prompt: ")
 print(text)
 
-inputs = tokenizenizer(
-    text,
-    return_tensor="pt",
-    padding=True
-    truncation=True
-)
-
+inputs = tokenizenizer(text, return_tensor="pt", padding=True, truncation=True)
