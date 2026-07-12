@@ -13,4 +13,10 @@ encoded = tokenizer.encode(text)
 print(encoded)
 print(tokenizer.decode(encoded))
 print(tokenizer.tokenize(text))
+
+for name, param in model.named_parameters():
+    print(name)
+    print(param.shape)
+    print(param.dtype)
+    print(param.device)
 # inputs = tokenizer(text, return_tensor="pt", padding=True, truncation=True)
