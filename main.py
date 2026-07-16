@@ -20,5 +20,4 @@ for name, param in model.named_parameters():
     print(param.dtype)
     print(param.device)
 
-print(nn.linear(2048, 256))
 # inputs = tokenizer(text, return_tensor="pt", padding=True, truncation=True)
