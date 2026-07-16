@@ -20,4 +20,10 @@ for name, param in model.named_parameters():
     print(param.dtype)
     print(param.device)
 
+next_request = input("Next Prompt or q to quit: ")
+all_requests = []
+while next_request != "q":
+    all_requests.append(next_request)
+    next_request = input("Next Prompt or q to quit")
+
 # inputs = tokenizer(text, return_tensor="pt", padding=True, truncation=True)
