@@ -1,6 +1,3 @@
-from re import L
-
-
 class Scheduler:
     def __init__(self):
         self.free_blocks = None
@@ -13,6 +10,15 @@ class Scheduler:
 class BlockMetaData:
     def __init__(self, hash):
         self.hash = hash
+
+
+class Router:
+    def __init__(self, priorerty=1):
+        self.priorerty = priorerty
+        self.requests = []
+
+    def enqueue(self):
+        heapq.heappush(self.requests, self.pririerty)
 
 
 # atomic uuid

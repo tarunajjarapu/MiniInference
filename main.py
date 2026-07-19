@@ -1,8 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
-from transformers.models.switch_transformers.modeling_switch_transformers import (
-    router_z_loss_func,
-)
 
 import scheduler
 
