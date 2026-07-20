@@ -17,8 +17,8 @@ class Router:
         self.priorerty = priorerty
         self.requests = []
 
-    def enqueue(self):
-        heapq.heappush(self.requests, self.pririerty)
+    def schedule(self, request):
+        self.requests.append(request)
 
 
 # atomic uuid
