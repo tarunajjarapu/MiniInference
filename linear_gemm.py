@@ -5,4 +5,9 @@ def multiply(A, B):
             val = 0
             for i in range(len(A[0])):
                 val += A[row][i] * B[i][col]
-            new_matrix[row][col] = val
+                new_matrix[row][col] = val
+
+
+first = [[1, 2, 3], [1, 2, 3]]
+second = [[2], [2], [2]]
+multiply(first, second)
