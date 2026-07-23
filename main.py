@@ -36,6 +36,6 @@ for request in all_requests:
     scheduled_tasks.append(scheduler.Request(user, tokenizer.tokenize(request)))
 
 for task in scheduled_tasks:
-    router.schedule(scheduled_tasks)
+    router.schedule(task)
 
 # inputs = tokenizer(text, return_tensor="pt", padding=True, truncation=True)

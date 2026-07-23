@@ -4,7 +4,7 @@ class Scheduler:
         self.mapped_blocks = {}
 
     def add_new_request(self, request):
-        self.mapped_blocks[request.id]
+        self.mapped_blocks[request.id] = request
 
 
 class BlockMetaData:
