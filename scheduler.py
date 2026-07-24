@@ -1,10 +1,24 @@
 class Scheduler:
     def __init__(self):
-        self.free_blocks = None
         self.mapped_blocks = {}
+        self.free_blocks = BlockNode(None)
+        self.free_block_lengh = 0
 
     def add_new_request(self, request):
         self.mapped_blocks[request.id] = request
+
+    def get_next_block(self):
+        if self.free_block_length > 0:
+            take = self.free_blocks.next
+            self.free_blocks.next = self.free_blocks.next.next
+            take.next = None
+            return take
+        return None
+
+
+class BlockNode:
+    def __init__(self, next):
+        self.next = next
 
 
 class BlockMetaData:
