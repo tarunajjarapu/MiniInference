@@ -9,13 +9,6 @@ model = AutoModelForCausalLM.from_pretrained(model_id)
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
-text = input("Enter Prompt: ")
-print(text)
-encoded = tokenizer.encode(text)
-print(encoded)
-print(tokenizer.decode(encoded))
-print(tokenizer.tokenize(text))
-
 for name, param in model.named_parameters():
     print(name)
     print(param.shape)
@@ -27,7 +20,7 @@ next_request = input("Next Prompt or q to quit: ")
 all_requests = []
 while next_request != "q":
     all_requests.append(next_request)
-    next_request = input("Next Prompt or q to quit")
+    next_request = input("Next Prompt or q to quit: ")
 
 state = scheduler.Router
 scheduled_tasks = []

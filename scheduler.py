@@ -17,8 +17,9 @@ class Scheduler:
 
 
 class BlockNode:
-    def __init__(self, next):
+    def __init__(self, next, data=None):
         self.next = next
+        self.metaData = data
 
 
 class BlockMetaData:
