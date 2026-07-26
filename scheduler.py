@@ -34,11 +34,19 @@ class Router:
 
     def schedule(self, request):
         self.requests.append(request)
+        print(self.requests)
 
 
-# atomic uuid
 class Request:
+    _uuid = 0
+
     def __init__(self, user, tokens):
-        self.id = next_uid()
+        self.id = self.next_uid()
         self.user = user
         self.tokens = tokens
+
+    @classmethod
+    def next_uid(cls):
+        cur = cls._uuid
+        cls._uuid += 1
+        return cur

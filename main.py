@@ -22,13 +22,15 @@ while next_request != "q":
     all_requests.append(next_request)
     next_request = input("Next Prompt or q to quit: ")
 
-state = scheduler.Router
+state = scheduler.Router()
+router = scheduler.Router()
 scheduled_tasks = []
-router = scheduler.Router
+
 for request in all_requests:
     scheduled_tasks.append(scheduler.Request(user, tokenizer.tokenize(request)))
 
 for task in scheduled_tasks:
     router.schedule(task)
+
 
 # inputs = tokenizer(text, return_tensor="pt", padding=True, truncation=True)
