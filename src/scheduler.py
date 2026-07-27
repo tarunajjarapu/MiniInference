@@ -41,7 +41,7 @@ class Request:
     _uuid = 0
 
     def __init__(self, user, tokens):
-        self.id = self.next_uid()
+        self.id = self.next_uid
         self.user = user
         self.tokens = tokens
 

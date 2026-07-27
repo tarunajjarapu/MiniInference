@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-import scheduler
+from src import scheduler
 
 model_id = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 
