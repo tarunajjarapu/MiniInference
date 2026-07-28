@@ -2,7 +2,7 @@ class Scheduler:
     def __init__(self):
         self.mapped_blocks = {}
         self.free_blocks = BlockNode(None)
-        self.free_block_lengh = 0
+        self.free_block_length = 0
 
     def add_new_request(self, request):
         self.mapped_blocks[request.id] = request
@@ -10,8 +10,10 @@ class Scheduler:
     def get_next_block(self):
         if self.free_block_length > 0:
             take = self.free_blocks.next
-            self.free_blocks.next = self.free_blocks.next.next
+            if self.free_blocks.next is not None:
+                self.free_blocks.next = self.free_blocks.next.next
             take.next = None
+            self.free_block_length -= 1
             return take
         return None
 
