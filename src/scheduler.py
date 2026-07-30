@@ -36,14 +36,19 @@ class Router:
 
     def schedule(self, request):
         self.requests.append(request)
-        print(self.requests)
+        print(request.id)
+
+    def run_scheduler(self):
+        run_tasks = Scheduler()
+        for request in self.requests:
+            run_tasks.add_new_request(request)
 
 
 class Request:
     _uuid = 0
 
     def __init__(self, user, tokens):
-        self.id = self.next_uid
+        self.id = self.next_uid()
         self.user = user
         self.tokens = tokens
 
