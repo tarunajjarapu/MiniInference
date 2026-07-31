@@ -1,8 +1,9 @@
 class Scheduler:
-    def __init__(self):
+    def __init__(self, model):
         self.mapped_blocks = {}
         self.free_blocks = BlockNode(None)
         self.free_block_length = 0
+        self.model = model
 
     def add_new_request(self, request):
         self.mapped_blocks[request.id] = request

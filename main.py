@@ -32,5 +32,6 @@ for request in all_requests:
 for task in scheduled_tasks:
     router.schedule(task)
 
+router.run_scheduler(model)
 
 # inputs = tokenizer(text, return_tensor="pt", padding=True, truncation=True)
