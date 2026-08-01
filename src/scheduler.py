@@ -1,3 +1,6 @@
+from src.linear_gemm import initial_matrix_multiplication
+
+
 class Scheduler:
     def __init__(self, model):
         self.mapped_blocks = {}
@@ -6,6 +9,7 @@ class Scheduler:
         self.model = model
 
     def add_new_request(self, request):
+        request.hidden_states = initial_matrix_multiplication(request.tokens, self.model)
         self.mapped_blocks[request.id] = request
 
     def get_next_block(self):
@@ -39,10 +43,11 @@ class Router:
         self.requests.append(request)
         print(request.id)
 
-    def run_scheduler(self):
-        run_tasks = Scheduler()
+    def run_scheduler(self, model):
+        run_tasks = Scheduler(model)
         for request in self.requests:
             run_tasks.add_new_request(request)
+        return run_tasks
 
 
 class Request:
@@ -52,6 +57,7 @@ class Request:
         self.id = self.next_uid()
         self.user = user
         self.tokens = tokens
+        self.hidden_states = None
 
     @classmethod
     def next_uid(cls):
