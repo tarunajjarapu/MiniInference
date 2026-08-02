@@ -1,3 +1,4 @@
+from src.attention import initial_attention_step
 from src.linear_gemm import initial_matrix_multiplication
 
 
@@ -10,6 +11,9 @@ class Scheduler:
 
     def add_new_request(self, request):
         request.hidden_states = initial_matrix_multiplication(request.tokens, self.model)
+        request.query_states, request.key_states, request.value_states = (
+            initial_attention_step(request.hidden_states, self.model)
+        )
         self.mapped_blocks[request.id] = request
 
     def get_next_block(self):
@@ -58,6 +62,9 @@ class Request:
         self.user = user
         self.tokens = tokens
         self.hidden_states = None
+        self.query_states = None
+        self.key_states = None
+        self.value_states = None
 
     @classmethod
     def next_uid(cls):

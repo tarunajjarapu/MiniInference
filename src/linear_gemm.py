@@ -21,6 +21,7 @@ def multiply(A, B):
     return new_matrix
 
 
+@torch.inference_mode()
 def initial_matrix_multiplication(tokens, model):
     embedding = model.get_input_embeddings()
     if embedding is None or not hasattr(embedding, "weight"):
@@ -29,9 +30,8 @@ def initial_matrix_multiplication(tokens, model):
     token_ids = torch.as_tensor(tokens, dtype=torch.long, device=embedding.weight.device)
     if token_ids.ndim != 1:
         raise ValueError("tokens must be a one-dimensional sequence of token IDs")
-    if token_ids.numel() == 0:
-        return embedding.weight.new_empty((0, embedding.weight.shape[1]))
-    if torch.any(token_ids < 0) or torch.any(token_ids >= embedding.weight.shape[0]):
+
+    if torch.any(token_ids < 0) or torch.any(token_ids >= embedding.num_embeddings):
         raise ValueError("token ID is outside the model vocabulary")
 
-    return torch.index_select(embedding.weight, 0, token_ids)
+    return embedding(token_ids)
